@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 작성폼</title>
+</head>
+<body>
+
+<!-- Step.1
+    <div class="layout">
+        <input type="text">
+        <textarea></textarea>
+        <button>작성</button>
+    </div>
+-->
+
+    <div class="layout">
+        <form action="/board/writedo" method="post" enctype="multipart/form-data">
+            <!-- form 내 {enctype="multipart/form-data} : 모든 문자를 인코딩하지 않음을 명시, 이 방식은 <form> 요소가 파일이나 이미지를 서버로 전송할 때 주로 사용 -->
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Name</label>
+                <input type="text" name="title" id="exampleFormControlInput1" placeholder="Your Name">
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label><br>
+                <textarea id="exampleFormControlTextarea1" name="content" rows="5">Write Something</textarea>
+            </div>
+            <input type="file" name="file">
+            <button type="submit">작성</button>
+        </form>
+    </div>
+
+</body>
+</html>
+

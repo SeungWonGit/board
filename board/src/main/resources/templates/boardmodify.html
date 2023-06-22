@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">(수정됨)
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 작성폼</title>
+</head>
+<style>
+    .layout{
+        width : 500px;
+        margin : 0 auto;
+        margin-top : 40px;
+    }
+    </style>
+<body>
+<div class="layout">
+    <form th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" name="title" id="exampleFormControlInput1" th:value="${board.title}">(수정됨)
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label><br>
+            <textarea id="exampleFormControlTextarea1" name="content" rows="5" th:text="${board.content}">(수정됨)</textarea>
+        </div>
+        <button type="submit">작성</button>
+    </form>
+</div>
+</body>
+</html>

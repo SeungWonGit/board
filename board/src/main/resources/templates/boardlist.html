@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 리스트 페이지</title>
+</head>
+<style>
+    .layout{
+        width : 500px;
+        margin : 0 auto;
+        margin-top : 40px;
+    }
+  </style>
+<body>
+<div class="layout">
+  <table>
+    <thead>
+    <tr>
+      <th>글 번호</th>
+      <th>제목</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="board : ${list}">
+      <td th:text="${board.id}">1</td>
+      <td>
+        <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">제목입니다.</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+    <a th:if="${page != nowPage}" th:href="@{/board/list(page = ${page-1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
+    <strong  th:if="${page == nowPage}" th:text="${page}" style="color : red"></strong>
+    <!--현 페이지와 누르려는 페이지 같으면 href 작동 안해도 되게끔 if문-->
+  </th:block>
+  <!--th:block의 경우 굳이 tag로 감쌀필요 없는 태그를 th문법을 사용해 나타낼때 사용-->
+
+  <form th:action="@{/board/list}" method="get" >
+    <input type="text" name="searchKeyword">
+    <button type="submit">검색</button>
+  </form>
+</div>
+</body>
+</html>
